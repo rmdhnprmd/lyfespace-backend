@@ -27,12 +27,14 @@
         <!-- Sidebar -->
         <div class="border-end" id="sidebar-wrapper">
           <div class="sidebar-heading text-center">
-            <img
+            <a href="{{ route('home') }}">
+              <img
               src="/images/dashboard-store-logo.svg"
               alt=""
               class="my-4"
               width="170"
             />
+            </a>
           </div>
           <div class="list-group list-group-flush">
             <a
@@ -48,19 +50,19 @@
               My Products
             </a>
             <a
-              href="/dashboard-transactions.html"
+              href="{{ route('dashboard-transaction') }}"
               class="list-group-item list-group-item-action"
             >
               Transactions
             </a>
             <a
-              href="/dashboard-settings.html"
+              href="{{ route('dashboard-settings-store') }}"
               class="list-group-item list-group-item-action"
             >
               Store Settings
             </a>
             <a
-              href="/dashboard-account.html"
+              href="{{ route('dashboard-settings-account') }}"
               class="list-group-item list-group-item-action"
             >
               My Account

@@ -178,7 +178,7 @@
           data-aos="fade-up"
           data-aos-delay="100"
         >
-          <a href="{{ route('detail') }}" class="component-products d-block">
+          <a href="/detail.html" class="component-products d-block">
             <div class="products-thumbnail">
               <div
                 class="products-image"
@@ -197,7 +197,7 @@
           data-aos="fade-up"
           data-aos-delay="200"
         >
-          <a href="{{ route('detail') }}" class="component-products d-block">
+          <a href="/detail.html" class="component-products d-block">
             <div class="products-thumbnail">
               <div
                 class="products-image"
@@ -216,7 +216,7 @@
           data-aos="fade-up"
           data-aos-delay="300"
         >
-          <a href="{{ route('detail') }}" class="component-products d-block">
+          <a href="/detail.html" class="component-products d-block">
             <div class="products-thumbnail">
               <div
                 class="products-image"
@@ -235,7 +235,7 @@
           data-aos="fade-up"
           data-aos-delay="400"
         >
-          <a href="{{ route('detail') }}" class="component-products d-block">
+          <a href="/detail.html" class="component-products d-block">
             <div class="products-thumbnail">
               <div
                 class="products-image"
@@ -254,7 +254,7 @@
           data-aos="fade-up"
           data-aos-delay="500"
         >
-          <a href="{{ route('detail') }}" class="component-products d-block">
+          <a href="/detail.html" class="component-products d-block">
             <div class="products-thumbnail">
               <div
                 class="products-image"
@@ -273,7 +273,7 @@
           data-aos="fade-up"
           data-aos-delay="600"
         >
-          <a href="{{ route('detail') }}" class="component-products d-block">
+          <a href="/detail.html" class="component-products d-block">
             <div class="products-thumbnail">
               <div
                 class="products-image"
@@ -292,7 +292,7 @@
           data-aos="fade-up"
           data-aos-delay="700"
         >
-          <a href="{{ route('detail') }}" class="component-products d-block">
+          <a href="/detail.html" class="component-products d-block">
             <div class="products-thumbnail">
               <div
                 class="products-image"
@@ -311,7 +311,7 @@
           data-aos="fade-up"
           data-aos-delay="800"
         >
-          <a href="{{ route('detail') }}" class="component-products d-block">
+          <a href="/detail.html" class="component-products d-block">
             <div class="products-thumbnail">
               <div
                 class="products-image"

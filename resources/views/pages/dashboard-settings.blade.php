@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    LyfeSpace Setting
+    Store Setting
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
   <div class="container-fluid">
     <div class="dashboard-heading">
       <h2 class="dashboard-title">Store Settings</h2>
-      <p class="dashboard-subtitle">Make store that profitable</p>
+      <p class="dashboard-subtitle">Make the store profitable</p>
     </div>
 
     <div class="dashboard-content">
