@@ -36,5 +36,10 @@ Route::get('/dashboard/transactions', [App\Http\Controllers\DashboardTransaction
 Route::get('/dashboard/transactions/{id}', [App\Http\Controllers\DashboardTransactionController::class, 'details'])
       ->name('dashboard-transaction-details');
 
+Route::get('/dashboard/settings', [App\Http\Controllers\DashboardSettingController::class, 'store'])
+      ->name('dashboard-settings-store');
+Route::get('/dashboard/account', [App\Http\Controllers\DashboardSettingController::class, 'account'])
+      ->name('dashboard-settings-account');
+
 Auth::routes();
 

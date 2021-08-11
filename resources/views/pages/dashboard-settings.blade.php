@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    LyfeSpace Create Product
+    LyfeSpace Setting
 @endsection
 
 @section('content')
@@ -9,11 +9,11 @@
 <div
   class="section-content section-dashboard-home"
   data-aos="fade-up"
-  >
+>
   <div class="container-fluid">
     <div class="dashboard-heading">
-      <h2 class="dashboard-title">Create Product</h2>
-      <p class="dashboard-subtitle">Create your own product</p>
+      <h2 class="dashboard-title">Store Settings</h2>
+      <p class="dashboard-subtitle">Make store that profitable</p>
     </div>
 
     <div class="dashboard-content">
@@ -25,17 +25,11 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group mb-3">
-                      <label class="mb-2">Product Name</label>
+                      <label class="mb-2">Store Name</label>
                       <input type="text" class="form-control" />
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <div class="form-group mb-3">
-                      <label class="mb-2">Price</label>
-                      <input type="number" class="form-control" />
-                    </div>
-                  </div>
-                  <div class="col-md-12">
                     <div class="form-group mb-3">
                       <label class="mb-2">Category</label>
                       <select name="category" class="form-select">
@@ -44,19 +38,42 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-md-12">
+                  <div class="col-md-8">
                     <div class="form-group mb-3">
-                      <label class="mb-2">Description</label>
-                      <textarea name="editor"></textarea>
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group mb-3">
-                      <label class="mb-2">Thumbnails</label>
-                      <input type="file" class="form-control" />
+                      <label>Store Status</label>
                       <p class="text-muted">
-                        You can select more than one file
+                        Is your store currently open?
                       </p>
+                      <div class="form-check-inline">
+                        <input
+                          type="radio"
+                          class="form-check-input"
+                          name="is_store_open"
+                          id="openStoreTrue"
+                          value="true"
+                        />
+                        <label
+                          for="openStoreTrue"
+                          class="custom-control-label"
+                        >
+                          We're Open
+                        </label>
+                      </div>
+                      <div class="form-check-inline">
+                        <input
+                          type="radio"
+                          class="form-check-input"
+                          name="is_store_open"
+                          id="openStoreFalse"
+                          value="false"
+                        />
+                        <label
+                          for="openStoreFalse"
+                          class="custom-control-label"
+                        >
+                          Sorry, We're Currently Closed
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -79,10 +96,3 @@
   </div>
 </div>
 @endsection
-
-@push('addon-script')
-  <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
-  <script>
-    CKEDITOR.replace("editor");
-  </script>
-@endpush

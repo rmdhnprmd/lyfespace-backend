@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    LyfeSpace Dashboard Transaction
+    LyfeSpace Transaction
 @endsection
 
 @section('content')
