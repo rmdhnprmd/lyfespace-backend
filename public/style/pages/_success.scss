@@ -1,0 +1,29 @@
+.page-success {
+  .row-login {
+    margin-top: -110px;
+    margin-bottom: 10px;
+
+    img {
+      width: 350px;
+    }
+  }
+
+  .section-success {
+    h2 {
+      font-weight: 200;
+      font-size: 28px;
+      color: #0c0d36;
+      margin-top: 0;
+    }
+
+    .btn-success {
+      @include button-variant(#8470ff, transparent);
+      color: #fff !important;
+    }
+
+    .btn-signup {
+      @include button-variant(#f3f3f3, transparent);
+      color: #bbbbbb;
+    }
+  }
+}
