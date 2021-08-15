@@ -17,8 +17,6 @@ class CreateProductGalleriesTable extends Migration
             $table->id();
             $table->string('photos');
             $table->integer('products_id');
-            
-            $table->softDeletes();
             $table->timestamps();
         });
     }
