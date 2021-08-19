@@ -18,6 +18,7 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
       />
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css"/>
     @stack('addon-style')
   </head>
 
@@ -39,7 +40,7 @@
           </div>
           <div class="list-group list-group-flush">
             <a
-              href="#"
+              href="{{ route('admin-dashboard') }}"
               class="list-group-item list-group-item-action"
             >
               Dashboard
@@ -148,8 +149,9 @@
 
     <!-- Bootstrap core JavaScript -->
     @stack('prepend-script')
-      <script src="/vendor/jquery/jquery-3.6.0.slim.min.js"></script>
+      <script src="/vendor/jquery/jquery-3.6.0.min.js"></script>
       <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
       <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
       <script>
         AOS.init();
