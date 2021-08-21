@@ -42,7 +42,7 @@
                   <div class="col-md-12">
                     <div class="form-group mb-3">
                       <label class="mb-1">Photo</label>
-                      <input type="file" name="photo" class="form-control" required>
+                      <input type="file" name="photo" class="form-control">
                     </div>
                   </div>
                 </div>

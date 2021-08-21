@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Categories
+    Users
 @endsection
 
 @section('content')
@@ -12,8 +12,8 @@
   >
   <div class="container-fluid">
     <div class="dashboard-heading">
-      <h2 class="dashboard-title">Categories</h2>
-      <p class="dashboard-subtitle">Edit Category</p>
+      <h2 class="dashboard-title">Users</h2>
+      <p class="dashboard-subtitle">Edit User</p>
     </div>
     <div class="dashboard-content">
       <div class="row">
@@ -29,20 +29,37 @@
           @endif
           <div class="card">
             <div class="card-body">
-              <form action="{{ route('categories.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('user.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group mb-3">
-                      <label class="mb-1">Category Name</label>
-                      <input type="text" name="name" class="form-control" value="{{ $item->name }}" required>
+                      <label class="mb-1">User Name</label>
+                      <input type="text" name="name" class="form-control" required value="{{ $item->name }}">
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group mb-3">
-                      <label class="mb-1">Photo</label>
-                      <input type="file" name="photo" class="form-control" required>
+                      <label class="mb-1">User Email</label>
+                      <input type="email" name="email" class="form-control" required value="{{ $item->email }}">
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group mb-3">
+                      <label class="mb-1">User Password</label>
+                      <input type="password" name="password" class="form-control">
+                      <small class="text-muted">Don't fill it if you don't want to change the password</small>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group mb-3">
+                      <label class="mb-1">Roles</label>
+                      <select name="roles" required class="form-select">
+                        <option value="{{ $item->roles }}" selected>Not Changed</option>
+                        <option value="ADMIN">Admin</option>
+                        <option value="USER">User</option>
+                      </select>
                     </div>
                   </div>
                 </div>
