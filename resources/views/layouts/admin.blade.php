@@ -55,7 +55,7 @@
               href="{{ route('categories.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/categories*')) ? 'active' : '' }}"
             >
-              categories
+              Categories
             </a>
             <a
               href="#"

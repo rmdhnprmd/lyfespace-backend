@@ -3,7 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+use App\Http\Requests\Admin\CategoryRequest;
+
+use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
 {
@@ -14,7 +20,43 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        if(request()->ajax())  
+        {
+            $query = Category::query();
+
+            return DataTables::of($query)
+              ->addColumn('action', function($item) {
+                  return '
+                      <div class="btn-group">
+                        <div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle me-1 mb-1"
+                            type="button"
+                            data-bs-toggle="dropdown">
+                              Action
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="' . route('categories.edit', $item->id) . '">
+                              Edit
+                            </a>
+                            <form action="'. route('categories.destroy', $item->id) .'" method="POST">
+                              '. method_field('delete') . csrf_field() .'
+                              <button type="submit" class="dropdown-item text-danger">
+                                Delete
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                  ';
+              })
+              ->editColumn('photo', function($item) {
+                return $item->photo ? '<img src="'. Storage::url($item->photo) .'" style="max-height: 40px;" />' : '';
+              })
+              ->rawColumns(['action', 'photo'])
+              ->make();
+        }
+
+        return view('pages.admin.category.index');
     }
 
     /**
@@ -33,7 +75,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         //
     }
@@ -67,7 +109,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
         //
     }
