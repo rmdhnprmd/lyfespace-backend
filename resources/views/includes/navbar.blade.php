@@ -97,7 +97,7 @@
           <li class="nav-item">
             <a href="{{ route('logout') }}"
               onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
-              class="dropdown-item btn btn-warning nav-link"> 
+              class="dropdown-item nav-link"> 
               Logout
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
