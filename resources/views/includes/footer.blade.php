@@ -32,24 +32,17 @@
 
         <div class="col-md-6 col-lg-3">
           <h6>Categories</h6>
-          <ul class="footer-links">
-            <li><a href="#">Baby</a></li>
-            <li>
-              <a href="#">Furniture</a>
-            </li>
-            <li>
-              <a href="#">Gadgets</a>
-            </li>
-            <li>
-              <a href="#">Make Up</a>
-            </li>
-            <li>
-              <a href="#">Sneaker</a>
-            </li>
-            <li>
-              <a href="#">Tools</a>
-            </li>
-          </ul>
+          @forelse ($categories as $category)
+            @if ($category)
+              <ul class="footer-links mb-0">
+                <li><a href="{{ route('categories-detail', $category->slug) }}">{{ $category->name }}</a></li>
+              </ul>
+            @endif
+            
+          @empty
+            
+          @endforelse
+          
         </div>
 
         <div class="col-md-6 col-lg-3">
