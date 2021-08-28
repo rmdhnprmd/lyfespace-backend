@@ -18,28 +18,81 @@
             <br />
             in The Newest Way
           </h2>
-          <form class="mt-3">
+
+          <form method="POST" action="{{ route('register') }}" class="mt-3">
+            @csrf
             <div class="form-group mb-3">
               <label>Full Name</label>
-              <input
-                type="text"
-                class="form-control is-valid"
-                v-model="name"
+              <input id="name"
+                v-model="name" 
+                type="text" 
+                class="form-control @error('name') is-invalid @enderror" 
+                name="name" 
+                value="{{ old('name') }}" 
+                required 
+                autocomplete="name" 
                 autofocus
-              />
+                />
+
+              @error('name')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
             </div>
             <div class="form-group mb-3">
               <label>Email Address</label>
-              <input
-                type="email"
-                class="form-control is-invalid"
-                v-model="email"
-              />
+              <input id="email"
+                v-model="email" 
+                type="email" 
+                class="form-control @error('email') is-invalid @enderror" 
+                name="email" 
+                value="{{ old('email') }}" 
+                required 
+                autocomplete="email"
+                />
+
+              @error('email')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
             </div>
             <div class="form-group mb-3">
               <label>Password</label>
               <input type="password" class="form-control" />
+              <input id="password" 
+                type="password" 
+                class="form-control @error('password') is-invalid @enderror" 
+                name="password" 
+                required 
+                autocomplete="new-password"
+                />
+
+              @error('password')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
             </div>
+            <div class="form-group mb-3">
+              <label>Password Confirmation</label>
+              <input type="password" class="form-control" />
+              <input id="password-confirm" 
+                type="password" 
+                class="form-control @error('password_confirm') is-invalid @enderror" 
+                name="password_confirm" 
+                required 
+                autocomplete="new-password"
+                />
+
+              @error('password_confirm')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+            </div>
+
             <div class="form-group mb-3">
               <label>Store</label>
               <p class="text-muted">Do you want to open an online store?</p>
@@ -70,9 +123,23 @@
                 </label>
               </div>
             </div>
+
             <div class="form-group mb-3" v-if="is_store_open">
               <label>Store Name</label>
-              <input type="text" class="form-control" />
+              <input type="text" 
+                v-model="store_name"
+                id="store_name"
+                class="form-control @error('password_confirm') is-invalid @enderror"
+                name="store_name"
+                required
+                autocomplete
+                autofocus
+                />
+              @error('store_name')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
             </div>
             <div class="form-group mb-3" v-if="is_store_open">
               <label>Category</label>

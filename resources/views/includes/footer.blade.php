@@ -32,17 +32,13 @@
 
         <div class="col-md-6 col-lg-3">
           <h6>Categories</h6>
-          @forelse ($categories as $category)
-            @if ($category)
-              <ul class="footer-links mb-0">
-                <li><a href="{{ route('categories-detail', $category->slug) }}">{{ $category->name }}</a></li>
-              </ul>
-            @endif
-            
-          @empty
-            
-          @endforelse
-          
+          @foreach ($categories as $category)
+            <ul class="footer-links mb-0">
+                <li>
+                  <a href="{{ route('categories-detail', $category->slug) }}">{{ $category->name }}</a>
+                </li>
+            </ul>
+          @endforeach          
         </div>
 
         <div class="col-md-6 col-lg-3">
