@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CartController extends Controller
 {
@@ -13,7 +14,11 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('pages.cart');
+        $categories = Category::all();
+      
+        return view('pages.cart', [
+            'categories' => $categories
+        ]);
     }
 
     public function success()

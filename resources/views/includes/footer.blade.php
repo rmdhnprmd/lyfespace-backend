@@ -32,13 +32,13 @@
 
         <div class="col-md-6 col-lg-3">
           <h6>Categories</h6>
-          @foreach ($categories as $category)
-            <ul class="footer-links mb-0">
-                <li>
-                  <a href="{{ route('categories-detail', $category->slug) }}">{{ $category->name }}</a>
-                </li>
-            </ul>
-          @endforeach          
+          <ul class="footer-links mb-0">
+            @foreach ($categories as $category)
+              <li>
+                <a href="{{ route('categories-detail', $category->slug) }}">{{ $category->name }}</a>
+              </li>
+            @endforeach
+          </ul>
         </div>
 
         <div class="col-md-6 col-lg-3">
@@ -122,14 +122,6 @@
                 ><em class="fa fa-twitter"></em
               ></a>
             </li>
-            <!-- <li>
-              <a
-                class="dribbble"
-                href="https://dribbble.com/"
-                target="blank"
-                ><em class="fa fa-dribbble"></em
-              ></a>
-            </li> -->
             <li>
               <a
                 class="linkedin"

@@ -28,7 +28,7 @@
     </div>
   </section>
 
-  <section class="store-gallery" id="gallery">
+  <section class="store-gallery mb-2" id="gallery">
     <div class="container">
       <div class="row">
         <div class="col-lg-8" data-aos="zoom-in">
@@ -70,17 +70,30 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
-            <h1>Nyender Sofa</h1>
-            <div class="owner">By Rebahan Company</div>
-            <div class="price">$899</div>
+            <h1>{{ $product->name }}</h1>
+            <div class="owner">By {{ $product->user->store_name }}</div>
+            <div class="price">${{ number_format($product->price) }}</div>
           </div>
 
           <div class="col-lg-2" data-aos="zoom-in">
-            <a
-              href="{{ route('cart') }}"
-              class="btn btn-success d-grid text-white mb-3"
-              >Add to Cart</a
-            >
+            @auth
+              <form action="{{ route('detail-add', $product->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <button
+                  type="submit"
+                  class="btn btn-success d-grid text-white mb-3"
+                  >
+                  Add to Cart
+                </button>
+              </form>
+            @else
+              <a
+                href="{{ route('login') }}"
+                class="btn btn-success d-grid text-white mb-3"
+                >
+                Sign In to Add
+              </a>
+            @endauth  
           </div>
         </div>
       </div>
@@ -90,36 +103,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12 col-lg-8">
-            <p>
-              Enjoy the super comfy NYENDER sofa with embracing feel and
-              deep seat cushions made of pocket springs, high resilience
-              foam and polyester fibres, adding both firm support and
-              relaxing softness.
-            </p>
-            <p>
-              Reversible back cushions provide soft support for your back
-              and two different sides to wear. Thanks to the combination of
-              polyester fibres and cut foam the cushions will retain their
-              shape and comfort year after year. The cover is easy to keep
-              clean as it is removable and can be machine washed. A range of
-              coordinated covers makes it easy for you to give your
-              furniture a new look.
-            </p>
-            <p>
-              10-year limited warranty. Read about the terms in the limited
-              warranty brochure.
-            </p>
-            <p>
-              The cover has a lightfastness level of 5 (the ability to
-              resist color fading) on a scale of 1 to 8. According to
-              industry standards, a lightfastness level of 4 or higher is
-              suitable for home use.
-            </p>
-            <p>
-              This cover's ability to resist abrasion has been tested to
-              handle 15,000 cycles, which is suitable for furniture that
-              should withstand everyday use in the home.
-            </p>
+            {!! $product->description !!}
           </div>
         </div>
       </div>
@@ -199,22 +183,12 @@
       data: {
         activePhoto: 0,
         photos: [
-          {
-            id: 1,
-            url: "/images/product-details-1.jpg",
-          },
-          {
-            id: 2,
-            url: "/images/product-details-2.jpg",
-          },
-          {
-            id: 3,
-            url: "/images/product-details-3.jpg",
-          },
-          {
-            id: 4,
-            url: "/images/product-details-4.jpg",
-          },
+          @foreach ($product->galleries as $gallery)
+            {
+              id: {{ $gallery->id }},
+              url: "{{ Storage::url($gallery->photos) }}",
+            },
+          @endforeach
         ],
       },
       methods: {
