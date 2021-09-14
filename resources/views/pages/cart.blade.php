@@ -44,243 +44,239 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td style="width: 15%">
-                  <img
-                    src="/images/product-cart-1.jpg"
-                    alt=""
-                    class="cart-image"
-                  />
-                </td>
-                <td style="width: 35%">
-                  <div class="product-title">
-                      Nyender Sofa
-                  </div>
-                  <div class="product-subtitle">
-                      by Rebahan Company
-                  </div>
-                </td>
-                <td style="width: 35%">
-                  <div class="product-title">
-                      $1,409
-                  </div>
-                  <div class="product-subtitle">
-                      USD
-                  </div>
-                </td>
-                <td style="width: 20%">
-                  <a
-                      href="#"
-                      class="btn btn-remove-cart"
-                  >
-                      Remove
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td style="width: 15%">
-                  <img
-                    src="/images/product-cart-2.jpg"
-                    alt=""
-                    class="cart-image"
-                  />
-                </td>
-                <td style="width: 35%">
-                  <div class="product-title">
-                      Orange Bogotta
-                  </div>
-                  <div class="product-subtitle">
-                      by Typebeast
-                  </div>
-                </td>
-                <td style="width: 35%">
-                  <div class="product-title">
-                      $94,509
-                  </div>
-                  <div class="product-subtitle">
-                      USD
-                  </div>
-                </td>
-                <td style="width: 20%">
-                  <a
-                    href="#"
-                    class="btn btn-remove-cart"
-                  >
-                    Remove
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td style="width: 15%">
-                  <img
-                    src="/images/product-cart-3.jpg"
-                    alt=""
-                    class="cart-image"
-                  />
-                </td>
-                <td style="width: 35%">
-                  <div class="product-title">
-                      Tatakan Gelas
-                  </div>
-                  <div class="product-subtitle">
-                      by Pecah Belah
-                  </div>
-                </td>
-                <td style="width: 35%">
-                  <div class="product-title">
-                      $45,184
-                  </div>
-                  <div class="product-subtitle">
-                      USD
-                  </div>
-                </td>
-                <td style="width: 20%">
-                  <a
-                    href="#"
-                    class="btn btn-remove-cart"
-                  >
-                    Remove
-                  </a>
-                </td>
-              </tr>
+              @php $totalPrice = 0 @endphp
+              @foreach ($carts as $cart)
+                <tr>
+                  <td style="width: 15%">
+                    @if ($cart->product->galleries)
+                      <img
+                        src="{{ Storage::url($cart->product->galleries->first()->photos) }}"
+                        alt=""
+                        class="cart-image"
+                      />
+                    @endif
+                  </td>
+                  <td style="width: 35%">
+                    <div class="product-title">
+                        {{ $cart->product->name }}
+                    </div>
+                    <div class="product-subtitle">
+                        by {{ $cart->product->user->store_name }}
+                    </div>
+                  </td>
+                  <td style="width: 35%">
+                    <div class="product-title">
+                        ${{ number_format($cart->product->price) }}
+                    </div>
+                    <div class="product-subtitle">
+                        USD
+                    </div>
+                  </td>
+                  <td style="width: 20%">
+                    <form action="{{ route('cart-delete', $cart->id) }}" method="POST">
+                      @method('DELETE')
+                      @csrf
+                      <button
+                        type="submit"
+                        class="btn btn-remove-cart"
+                        >
+                        Remove
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+                @php $totalPrice += $cart->product->price @endphp
+              @endforeach
             </tbody>
           </table>
         </div>
       </div>
 
-      <div class="row" data-aos="fade-up" data-aos-delay="150">
-        <div class="col-12">
-          <hr />
-        </div>
-        <div class="col-12">
-          <h2 class="mb-4">Shipping Details</h2>
-        </div>
-      </div>
-
-      <form
-        class="row mb-2"
-        data-aos="fade-up"
-        data-aos-delay="200"
-        >
-        <div class="col-md-6 mb-4">
-          <label for="address" class="form-label"
-            >Address</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            id="address"
-            placeholder="1234 Main St"
-          />
+      <form action="" id="locations">
+        <div class="row" data-aos="fade-up" data-aos-delay="150">
+          <div class="col-12">
+            <hr />
+          </div>
+          <div class="col-12">
+            <h2 class="mb-4">Shipping Details</h2>
+          </div>
         </div>
 
-        <div class="col-md-6 mb-4">
-          <label for="address2" class="form-label"
-            >Address 2</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            id="address2"
-            placeholder="Apartment, studio, or floor"
-          />
+        <div class="row mb-2" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-md-6 mb-4">
+            <label for="address_one" class="form-label">
+              Address
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="address_one"
+              name="address_one"
+              placeholder="1234 Main St"
+            />
+          </div>
+
+          <div class="col-md-6 mb-4">
+            <label for="address_two" class="form-label">
+              Address 2
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="address_two"
+              name="address_two"
+              placeholder="Apartment, studio, or floor"
+            />
+          </div>
+
+          <div class="col-md-4 mb-4">
+            <label for="provinces_id" class="form-label">
+              Province
+            </label>
+            <select
+              name="provinces_id"
+              id="provinces_id"
+              class="form-select"
+              v-if="provinces"
+              v-model="provinces_id"
+              >
+              <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
+            </select>
+            <select v-else class="form-select"></select>
+          </div>
+
+          <div class="col-md-4 mb-4">
+            <label for="regencies_id" class="form-label">City</label>
+            <select 
+              name="regencies_id" 
+              id="regencies_id" 
+              class="form-select"
+              v-if="regencies"
+              v-model="regencies_id"
+              >
+              <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
+            </select>
+            <select v-else class="form-select"></select>
+          </div>
+
+          <div class="col-md-4 mb-4">
+            <label for="zip_code" class="form-label">
+              Zip Code
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="zip_code"
+              name="zip_code"
+              placeholder="11111"
+            />
+          </div>
+
+          <div class="col-md-6 mb-4">
+            <label for="country" class="form-label">Country</label>
+            <select name="country" id="country" class="form-select">
+              <option value="Indonesia">INDONESIA</option>
+            </select>
+          </div>
+
+          <div class="col-md-6 mb-4">
+            <label for="phone_number" class="form-label">
+              Phone Number
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="phone_number"
+              name="phone_number"
+              placeholder="+62 81220022000"
+            />
+          </div>
         </div>
 
-        <div class="col-md-4 mb-4">
-          <label for="province" class="form-label"
-            >Province</label
-          >
-          <select
-            name="province"
-            id="province"
-            class="form-select"
-          >
-            <option value="West Java">West Java</option>
-          </select>
+        <div class="row" data-aos="fade-up" data-aos-delay="150">
+          <div class="col-12">
+            <hr />
+          </div>
+          <div class="col-12">
+            <h2 class="mb-1">Payment Informations</h2>
+          </div>
         </div>
 
-        <div class="col-md-4 mb-4">
-          <label for="city" class="form-label">City</label>
-          <select name="city" id="city" class="form-select">
-            <option selected>Choose...</option>
-            <option value="Bandung">Bandung</option>
-            <option value="Bekasi">Bekasi</option>
-            <option value="Bogor">Bogor</option>
-          </select>
-        </div>
-
-        <div class="col-md-4 mb-4">
-          <label for="postalCode" class="form-label"
-            >Postal Code</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            id="postalCode"
-            placeholder="11111"
-          />
-        </div>
-
-        <div class="col-md-6 mb-4">
-          <label for="state" class="form-label">State</label>
-          <select name="state" id="state" class="form-select">
-            <option value="Indonesia">Indonesia</option>
-          </select>
-        </div>
-
-        <div class="col-md-6 mb-4">
-          <label for="mobile" class="form-label"
-            >Mobile</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            id="mobile"
-            placeholder="+62 81220022000"
-          />
+        <div class="row" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-4 col-md-2">
+            <div class="product-title">$0</div>
+            <div class="product-subtitle">Tax</div>
+          </div>
+          <div class="col-4 col-md-3">
+            <div class="product-title">$0</div>
+            <div class="product-subtitle">
+              Product Insurance
+            </div>
+          </div>
+          <div class="col-4 col-md-2">
+            <div class="product-title">$0</div>
+            <div class="product-subtitle">Ship to Bekasi</div>
+          </div>
+          <div class="col-4 col-md-2">
+            <div class="product-title text-success">
+                ${{ number_format($totalPrice ?? 0) }}
+            </div>
+            <div class="product-subtitle">Total</div>
+          </div>
+          <div class="col-8 col-md-3">
+            <a
+              href="{{ route('success') }}"
+              class="btn btn-success mt-4 px-4 d-grid"
+            >
+              Checkout Now
+            </a>
+          </div>
         </div>
       </form>
-
-      <div class="row" data-aos="fade-up" data-aos-delay="150">
-        <div class="col-12">
-          <hr />
-        </div>
-        <div class="col-12">
-          <h2 class="mb-1">Payment Informations</h2>
-        </div>
-      </div>
-
-      <div class="row" data-aos="fade-up" data-aos-delay="200">
-        <div class="col-4 col-md-2">
-          <div class="product-title">$10</div>
-          <div class="product-subtitle">Tax</div>
-        </div>
-        <div class="col-4 col-md-3">
-          <div class="product-title">$20</div>
-          <div class="product-subtitle">
-            Product Insurance
-          </div>
-        </div>
-        <div class="col-4 col-md-2">
-          <div class="product-title">$50</div>
-          <div class="product-subtitle">Ship to Bekasi</div>
-        </div>
-        <div class="col-4 col-md-2">
-          <div class="product-title text-success">
-              $141,182
-          </div>
-          <div class="product-subtitle">Total</div>
-        </div>
-        <div class="col-8 col-md-3">
-          <a
-            href="{{ route('success') }}"
-            class="btn btn-success mt-4 px-4 d-grid"
-          >
-            Checkout Now
-          </a>
-        </div>
-      </div>
     </div>
   </section>
 </div>
 @endsection
+
+@push('addon-script')
+  <script src="/vendor/vue/vue.js"></script>
+  <script src="https://unpkg.com/vue-toasted"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    var locations = new Vue({
+      el: "#locations",
+      mounted() {
+        AOS.init();
+        this.getProvincesData();
+      },
+      data: {
+        provinces: null,
+        regencies: null,
+        provinces_id: null,
+        regencies_id: null
+      },
+      methods: {
+        getProvincesData() {
+          var self = this;
+          axios.get('{{ route('api-provinces') }}')
+            .then(function(response){
+              self.provinces = response.data;
+            })
+        },
+        getRegenciesData() {
+          var self = this;
+          axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+            .then(function(response){
+              self.regencies = response.data;
+            })
+        },
+      },
+      watch: {
+        provinces_id: function(val, oldVal) {
+          this.regencies_id = null;
+          this.getRegenciesData();
+        }
+      }
+    });
+  </script>
+@endpush
