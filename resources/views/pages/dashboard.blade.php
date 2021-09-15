@@ -30,7 +30,7 @@
           <div class="card mb-2">
             <div class="card-body">
               <div class="dashboard-card-title">Revenue</div>
-              <div class="dashboard-card-subtitle">$23,480</div>
+              <div class="dashboard-card-subtitle">Rp 23,480</div>
             </div>
           </div>
         </div>

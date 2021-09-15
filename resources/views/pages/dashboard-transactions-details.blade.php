@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                       <div class="product-title">Total Amount</div>
-                      <div class="product-subtitle">$45,184</div>
+                      <div class="product-subtitle">Rp 45,184</div>
                     </div>
                     <div class="col-12 col-md-6">
                       <div class="product-title">Mobile</div>

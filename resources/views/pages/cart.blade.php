@@ -66,10 +66,10 @@
                   </td>
                   <td style="width: 35%">
                     <div class="product-title">
-                        ${{ number_format($cart->product->price) }}
+                        Rp {{ number_format($cart->product->price) }}
                     </div>
                     <div class="product-subtitle">
-                        USD
+                        Rupiah
                     </div>
                   </td>
                   <td style="width: 20%">
@@ -92,7 +92,9 @@
         </div>
       </div>
 
-      <form action="" id="locations">
+      <form action="{{ route('checkout') }}" id="locations" enctype="multipart/form-data" method="POST">
+        @csrf
+        <input type="hidden" name="total_price" value="{{ $totalPrice }}">
         <div class="row" data-aos="fade-up" data-aos-delay="150">
           <div class="col-12">
             <hr />
@@ -204,32 +206,32 @@
 
         <div class="row" data-aos="fade-up" data-aos-delay="200">
           <div class="col-4 col-md-2">
-            <div class="product-title">$0</div>
+            <div class="product-title">Rp 0</div>
             <div class="product-subtitle">Tax</div>
           </div>
           <div class="col-4 col-md-3">
-            <div class="product-title">$0</div>
+            <div class="product-title">Rp 0</div>
             <div class="product-subtitle">
               Product Insurance
             </div>
           </div>
           <div class="col-4 col-md-2">
-            <div class="product-title">$0</div>
+            <div class="product-title">Rp 0</div>
             <div class="product-subtitle">Ship to Bekasi</div>
           </div>
           <div class="col-4 col-md-2">
             <div class="product-title text-success">
-                ${{ number_format($totalPrice ?? 0) }}
+                Rp {{ number_format($totalPrice ?? 0) }}
             </div>
             <div class="product-subtitle">Total</div>
           </div>
           <div class="col-8 col-md-3">
-            <a
-              href="{{ route('success') }}"
+            <button
+              type="submit"
               class="btn btn-success mt-4 px-4 d-grid"
             >
               Checkout Now
-            </a>
+            </button>
           </div>
         </div>
       </form>
