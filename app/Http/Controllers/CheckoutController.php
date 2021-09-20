@@ -51,6 +51,9 @@ class CheckoutController extends Controller
           ]);
         }
 
+        // dcelete cart data
+        Cart::where('users_id', Auth::user()->id)->delete();
+
         // konfigurasi midtrans
         Config::$serverKey = config('services.midtrans.serverKey');
         Config::$isProduction = config('services.midtrans.isProduction');
