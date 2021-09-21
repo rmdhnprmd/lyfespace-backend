@@ -56,6 +56,7 @@ Route::group(['midlleware' => ['auth']], function(){
 
       Route::get('/dashboard/settings', [App\Http\Controllers\DashboardSettingController::class, 'store'])
             ->name('dashboard-settings-store');
+            
       Route::get('/dashboard/account', [App\Http\Controllers\DashboardSettingController::class, 'account'])
             ->name('dashboard-settings-account');
 });
