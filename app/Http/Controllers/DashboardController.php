@@ -32,8 +32,6 @@ class DashboardController extends Controller
             'transaction_data' => $transactions->get(),
             'revenue' => $revenue,
             'customer' => $customer
-
-
         ]);
     }
 }
