@@ -129,6 +129,13 @@
                       Add Photo
                     </button>
                   </form>
+                  <form action="{{ route('dashboard-product-delete', $product->id) }}" method="POST" enctype="multipart/form-data" class="d-grid col-md-4 col-sm-6 mx-auto">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger mt-4">
+                      Delete This Product
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
