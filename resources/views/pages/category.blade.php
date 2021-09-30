@@ -73,7 +73,7 @@
                 ></div>
               </div>
               <div class="products-text">{{ $product->name }}</div>
-              <div class="products-price">${{ $product->price }}</div>
+              <div class="products-price">Rp {{ number_format($product->price) }}</div>
             </a>
           </div>
           @empty
