@@ -176,7 +176,10 @@
 
           <div class="col-md-6 mb-4">
             <label for="country" class="form-label">Country</label>
-            <select name="country" id="country" class="form-select">
+            <select 
+              name="country" 
+              id="country" 
+              class="form-select">
               <option value="Indonesia">INDONESIA</option>
             </select>
           </div>

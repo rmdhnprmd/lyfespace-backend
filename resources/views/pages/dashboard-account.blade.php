@@ -18,7 +18,12 @@
     <div class="dashboard-content">
       <div class="row">
         <div class="col-12">
-          <form action="">
+          <form action="{{ route('dashboard-settings-redirect', 'dashboard-settings-account') }}"
+            method="POST" 
+            enctype="multipart/form-data"
+            id="locations"
+            >
+            @csrf
             <div class="card">
               <div class="card-body">
                 <div class="row">
@@ -30,7 +35,8 @@
                       type="text"
                       class="form-control"
                       id="name"
-                      value="Ramadhan Permadi"
+                      name="name"
+                      value="{{ $user->name }}"
                     />
                   </div>
 
@@ -42,93 +48,104 @@
                       type="email"
                       class="form-control"
                       id="email"
-                      value="akucintakamu@email.com"
+                      name="email"
+                      value="{{ $user->email }}"
                     />
                   </div>
 
                   <div class="col-md-6 mb-4">
-                    <label for="address" class="form-label"
+                    <label for="address_one" class="form-label"
                       >Address</label
                     >
                     <input
                       type="text"
                       class="form-control"
-                      id="address"
-                      placeholder="1234 Main St"
+                      id="address_one"
+                      name="address_one"
+                      value="{{ $user->address_one }}"
                     />
                   </div>
 
                   <div class="col-md-6 mb-4">
-                    <label for="address2" class="form-label"
+                    <label for="address_two" class="form-label"
                       >Address 2</label
                     >
                     <input
                       type="text"
                       class="form-control"
-                      id="address2"
-                      placeholder="Apartment, studio, or floor"
+                      id="address_two"
+                      name="address_two"
+                      value="{{ $user->address_two }}"
                     />
                   </div>
 
                   <div class="col-md-4 mb-4">
-                    <label for="province" class="form-label"
-                      >Province</label
-                    >
+                    <label for="provinces_id" class="form-label">
+                      Province
+                    </label>
                     <select
-                      name="province"
-                      id="province"
+                      name="provinces_id"
+                      id="provinces_id"
                       class="form-select"
-                    >
-                      <option selected>Select Province</option>
-                      <option value="West Java">West Java</option>
+                      v-if="provinces"
+                      v-model="provinces_id"
+                      >
+                      <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
                     </select>
+                    <select v-else class="form-select"></select>
                   </div>
 
                   <div class="col-md-4 mb-4">
-                    <label for="city" class="form-label">City</label>
-                    <select name="city" id="city" class="form-select">
-                      <option selected>Select City</option>
-                      <option value="Bandung">Bandung</option>
-                      <option value="Bekasi">Bekasi</option>
-                      <option value="Bogor">Bogor</option>
+                    <label for="regencies_id" class="form-label">
+                      City
+                    </label>
+                    <select 
+                      name="regencies_id" 
+                      id="regencies_id" 
+                      class="form-select"
+                      v-if="regencies"
+                      v-model="regencies_id"
+                      >
+                      <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
                     </select>
+                    <select v-else class="form-select"></select>
                   </div>
 
                   <div class="col-md-4 mb-4">
-                    <label for="postalCode" class="form-label"
+                    <label for="zip_code" class="form-label"
                       >Postal Code</label
                     >
                     <input
                       type="text"
                       class="form-control"
-                      id="postalCode"
-                      placeholder="11111"
+                      id="zip_code"
+                      name="zip_code"
+                      value="{{ $user->zip_code }}"
                     />
                   </div>
 
                   <div class="col-md-6 mb-4">
-                    <label for="state" class="form-label"
-                      >State</label
-                    >
-                    <select
-                      name="state"
-                      id="state"
-                      class="form-select"
-                    >
-                      <option selected">Select State</option>
-                      <option value="Indonesia">Indonesia</option>
-                    </select>
+                    <label for="country" class="form-label">
+                      Country
+                    </label>
+                    <input 
+                      name="country" 
+                      id="country" 
+                      class="form-control"
+                      value="{{ $user->country }}"
+                    >                   
                   </div>
 
                   <div class="col-md-6 mb-4">
-                    <label for="mobile" class="form-label"
-                      >Mobile</label
-                    >
+                    <label for="phone_number" class="form-label">
+                      Mobile
+                    </label>
                     <input
                       type="text"
                       class="form-control"
-                      id="mobile"
-                      placeholder="+62 81220022000"
+                      id="phone_number"
+                      name="phone_number"
+                      value="{{ $user->phone_number }}"
                     />
                   </div>
                 </div>
@@ -151,3 +168,46 @@
   </div>
 </div>
 @endsection
+
+@push('addon-script')
+  <script src="/vendor/vue/vue.js"></script>
+  <script src="https://unpkg.com/vue-toasted"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    var locations = new Vue({
+      el: "#locations",
+      mounted() {
+        AOS.init();
+        this.getProvincesData();
+      },
+      data: {
+        provinces: null,
+        regencies: null,
+        provinces_id: null,
+        regencies_id: null
+      },
+      methods: {
+        getProvincesData() {
+          var self = this;
+          axios.get('{{ route('api-provinces') }}')
+            .then(function(response){
+              self.provinces = response.data;
+            })
+        },
+        getRegenciesData() {
+          var self = this;
+          axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+            .then(function(response){
+              self.regencies = response.data;
+            })
+        },
+      },
+      watch: {
+        provinces_id: function(val, oldVal) {
+          this.regencies_id = null;
+          this.getRegenciesData();
+        },
+      }
+    });
+  </script>
+@endpush
