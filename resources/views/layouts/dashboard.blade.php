@@ -111,7 +111,7 @@
                       Hi, {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu">
-                      <a href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a>
+                      <a href="{{ route('home') }}" class="dropdown-item">Home</a>
                       <a href="{{ route('dashboard-settings-account') }}" class="dropdown-item">
                         Settings
                       </a>
@@ -144,7 +144,10 @@
                 <!-- Mobile Menu -->
                 <ul class="navbar-nav d-block d-md-none">
                   <li class="nav-item">
-                    <a href="#" class="nav-link"> Hi, {{ Auth::user()->name }} </a>
+                    <a href="#" class="nav-link d-inline-block"> Hi, {{ Auth::user()->name }} </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('home') }}" class="nav-link d-inline-block"> Home </a>
                   </li>
                   <li class="nav-item">
                     <a href="{{ route('cart') }}" class="nav-link d-inline-block"> My Cart </a>
@@ -152,7 +155,7 @@
                   <li class="nav-item">
                     <a href="{{ route('logout') }}"
                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
-                      class="dropdown-item nav-link"> 
+                      class="btn btn-warning d-grid nav-link"> 
                       Logout
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

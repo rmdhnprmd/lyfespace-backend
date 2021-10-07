@@ -29,7 +29,7 @@
           <a href="{{ route('categories') }}" class="nav-link">Categories</a>
         </li>
         <li class="nav-item">
-          <a href="rewards.html" class="nav-link">Rewards</a>
+          <a href="#" class="nav-link">Rewards</a>
         </li>
         @guest
           <li class="nav-item">
@@ -97,15 +97,18 @@
         <!-- Mobile Menu -->
         <ul class="navbar-nav d-block d-lg-none">
           <li class="nav-item">
-            <a href="#" class="nav-link"> Hi, {{ Auth::user()->name }} </a>
+            <a href="#" class="nav-link d-inline-block"> Hi, {{ Auth::user()->name }} </a>
           </li>
           <li class="nav-item">
             <a href="{{ route('cart') }}" class="nav-link d-inline-block"> My Cart </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('dashboard') }}" class="nav-link d-inline-block">Dashboard</a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('logout') }}"
               onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
-              class="dropdown-item nav-link"> 
+              class="btn btn-warning d-grid nav-link"> 
               Logout
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
