@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductGalleryController;
+use App\Http\Controllers\Admin\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,10 +80,11 @@ Route::prefix('admin')
     ->middleware(['auth', 'admin'])
     ->group(function() {
       Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin-dashboard');
-      Route::resource('categories', CategoryController::class);
-      Route::resource('user', UserController::class);
       Route::resource('product', ProductController::class);
       Route::resource('product-gallery', ProductGalleryController::class);
+      Route::resource('categories', CategoryController::class);
+      Route::resource('transaction', TransactionController::class);
+      Route::resource('user', UserController::class);
 });
 
 Auth::routes();
