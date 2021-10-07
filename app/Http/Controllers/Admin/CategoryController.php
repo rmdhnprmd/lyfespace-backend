@@ -36,10 +36,10 @@ class CategoryController extends Controller
                               Action
                           </button>
                           <div class="dropdown-menu">
-                            <a class="dropdown-item" href="' . route('categories.edit', $item->id) . '">
+                            <a class="dropdown-item" href="' . route('category.edit', $item->id) . '">
                               Edit
                             </a>
-                            <form action="'. route('categories.destroy', $item->id) .'" method="POST">
+                            <form action="'. route('category.destroy', $item->id) .'" method="POST">
                               '. method_field('delete') . csrf_field() .'
                               <button type="submit" class="dropdown-item text-danger">
                                 Delete
@@ -85,7 +85,7 @@ class CategoryController extends Controller
 
         Category::create($data);
 
-        return redirect()->route('categories.index');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -132,7 +132,7 @@ class CategoryController extends Controller
 
         $item->update($data);
 
-        return redirect()->route('categories.index');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -146,6 +146,6 @@ class CategoryController extends Controller
         $item = Category::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('category.index');
     }
 }

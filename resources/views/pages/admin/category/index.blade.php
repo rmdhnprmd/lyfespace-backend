@@ -20,7 +20,7 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-body">
-              <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3">
+              <a href="{{ route('category.create') }}" class="btn btn-primary mb-3">
                 + Add Category
               </a>
               <div class="table-responsive">

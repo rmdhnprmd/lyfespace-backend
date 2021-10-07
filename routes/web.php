@@ -82,7 +82,7 @@ Route::prefix('admin')
       Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin-dashboard');
       Route::resource('product', ProductController::class);
       Route::resource('product-gallery', ProductGalleryController::class);
-      Route::resource('categories', CategoryController::class);
+      Route::resource('category', CategoryController::class);
       Route::resource('transaction', TransactionController::class);
       Route::resource('user', UserController::class);
 });

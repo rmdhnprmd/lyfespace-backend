@@ -58,8 +58,8 @@
               Galleries
             </a>
             <a
-              href="{{ route('categories.index') }}"
-              class="list-group-item list-group-item-action {{ (request()->is('admin/categories*')) ? 'active' : '' }}"
+              href="{{ route('category.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/category*')) ? 'active' : '' }}"
             >
               Categories
             </a>

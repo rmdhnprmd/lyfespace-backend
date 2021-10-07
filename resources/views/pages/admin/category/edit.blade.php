@@ -29,7 +29,7 @@
           @endif
           <div class="card">
             <div class="card-body">
-              <form action="{{ route('categories.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('category.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="row">
