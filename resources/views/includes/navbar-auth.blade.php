@@ -34,7 +34,7 @@
           <a href="{{ route('categories') }}" class="nav-link">Categories</a>
         </li>
         <li class="nav-item">
-            <a href="rewards.html" class="nav-link">Rewards</a>
+            <a href="#" class="nav-link">Rewards</a>
         </li>
       </ul>
     </div>

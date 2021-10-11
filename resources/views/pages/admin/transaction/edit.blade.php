@@ -42,7 +42,7 @@
                         <option value="{{ $item->transaction_status }}" selected>{{ $item->transaction_status }}</option>
                         <option value="" disabled>------------</option>
                         <option value="PENDING">PENDING</option>
-                        <option value="SHIPPING">SHIPPING</option>
+                        <option value="CANCELLED">CANCELLED</option>
                         <option value="SUCCESS">SUCCESS</option>
                       </select>
                     </div>
