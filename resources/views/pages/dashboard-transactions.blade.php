@@ -97,7 +97,7 @@
             >
               @foreach ($buyTransactions as $transaction)
                   <a
-                    href="{{ route('dashboard-transaction-details', $transaction->id) }}"
+                    href="{{ route('dashboard-transaction-details-buy', $transaction->id) }}"
                     class="card card-list d-block"
                     >
                     <div class="card-body">

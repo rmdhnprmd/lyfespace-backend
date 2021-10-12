@@ -67,8 +67,8 @@
                   </div>
                 </div>
               </div>
-              <form action="{{ route('dashboard-transaction-update', $transaction->id) }}" method="POST" enctype="multipart/form-data">
-                @csrf
+
+              <div>
                 <div class="row">
                   <div class="col-12 mt-3">
                     <h5>Shipping Information</h5>
@@ -103,50 +103,18 @@
                         <div class="product-title">State</div>
                         <div class="product-subtitle">{{ $transaction->transaction->user->country }}</div>
                       </div>
-                      <div class="col-12 col-md-3">
+                      <div class="col-12 col-md-6">
                         <div class="product-title">Shipping Status</div>
-                        <select
-                          name="shipping_status"
-                          id="status"
-                          class="form-select"
-                          v-model="status"
-                          >
-                          <option value="PENDING">PENDING</option>
-                          <option value="SHIPPING">SHIPPING</option>
-                          <option value="SUCCESS">SUCCESS</option>
-                        </select>
+                        <div class="product-subtitle">{{ $transaction->shipping_status }}</div>
                       </div>
-                      <template v-if="status == 'SHIPPING'">
-                        <div class="col-md-3">
-                          <div class="product-title">Input Resi</div>
-                          <input
-                            type="text"
-                            class="form-control"
-                            name="resi"
-                            v-model="resi"
-                          />
-                        </div>
-                        <div class="col-md-4 d-grid">
-                          <button
-                            type="submit"
-                            class="btn btn-warning mt-4"
-                            >
-                            Update Resi
-                          </button>
-                        </div>
-                      </template>
+                      <div class="col-12 col-md-6">
+                        <div class="product-title">Resi</div>
+                        <div class="product-subtitle">{{ $transaction->resi }}</div>
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                <div class="row mt-3">
-                  <div class="col-12 text-end">
-                    <button class="btn btn-success px-5 mt-3">
-                      Save Now
-                    </button>
-                  </div>
-                </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -155,16 +123,3 @@
   </div>
 </div>
 @endsection
-
-@push('addon-script')
-  <script src="/vendor/vue/vue.js"></script>
-  <script>
-    var transactionDetails = new Vue({
-      el: "#transactionDetails",
-      data: {
-        status: "{{ $transaction->shipping_status }}",
-        resi: "{{ $transaction->resi }}",
-      },
-    });
-  </script>
-@endpush
